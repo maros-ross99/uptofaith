@@ -1,0 +1,2 @@
+<br />	
+<div style="float:right;"><img src="<?php echo site_url("images/admin/up_arrow.png"); ?>" />&nbsp;<a href="#top"><?php echo line('up'); ?></a></div>

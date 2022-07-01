@@ -1,0 +1,48 @@
+<?php
+class Functions_model extends CI_Model
+{
+	function __construct()
+   {
+		// Call the Model constructor
+		parent::__construct();
+	}
+	
+	// @copyright Jakub Vrána, http://php.vrana.cz/
+	function url($name)
+	{	 
+		// replace special chars to -
+		$url = preg_replace('~[^\\pL0-9_]+~u', '-', $name);
+		$url = trim($url, "-");
+		// convert to lower
+		$url = mb_strtolower($url, "UTF-8");
+		// convert diacritic chars to non-diacritic
+		setlocale(LC_CTYPE, "cs_CS.utf-8");
+		$url = iconv("UTF-8", "US-ASCII//TRANSLIT", $url);
+		// remove special chars after transliteration
+		$url = preg_replace('~[^-a-z0-9_]+~', '', $url);
+		
+		return $url;
+	}
+	
+	function escape($string)
+	{
+		return htmlspecialchars($string, ENT_QUOTES, "UTF-8");		
+	}
+	
+	function format_number($num)
+	{
+		return str_replace(".", ",", $num);	
+	}
+	
+	function unescape($string)
+	{
+		return htmlspecialchars_decode($string, ENT_QUOTES);		
+	}
+	
+	function sha1($string)
+	{
+		return $this->encrypt->sha1($this->escape($string));
+	}
+}
+
+?>

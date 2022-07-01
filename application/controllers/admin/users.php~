@@ -1,0 +1,196 @@
+<?php
+
+class Users extends CI_Controller
+{
+	var $global = NULL;
+	var $url = "admin/users/";
+	var $session_order_by = "users_order_by";
+	
+	function __construct()
+	{
+		parent::__construct();	
+
+		$this->load->model('Global_model', 'global_model');
+		$this->global = $this->global_model->get_global();
+		$this->global['rights'] = $this->users_model->rights;
+		$this->global['rights_type'] = $this->users_model->rights_type;
+		
+		if (!$this->session->userdata($this->session_order_by))
+			$this->session->set_userdata($this->session_order_by, array('date' => 'desc'));
+
+		$this->lang->load('admin/info_messages');
+		$this->lang->load('admin/users');
+	}
+	
+	function delete($ids = NULL)
+	{
+		if ((!is_array($ids)) && ($this->input->post('ids') == NULL))	
+			return $this->index($this->lang->line("message-not-exists"));
+			
+		if ($this->input->post('delete_confirm'))	
+		{
+			$ids = $this->input->post('ids');
+
+			foreach ($ids as $id)
+				if (!$this->users_model->delete($id))
+					return $this->index($this->lang->line("message-delete-error"));
+
+			return $this->index($this->lang->line("message-delete-success"));
+		}
+		
+		$data = array
+		(
+			'caption' => $this->lang->line("users-delete"),
+			'action' => site_url($this->url . "delete/"),
+			'buttons' => array($this->views_model->button_delete("delete_confirm", NULL), $this->views_model->button_cancel($this->url)),
+			'ids' => $ids,
+			'message' => sprintf($this->lang->line("message-delete-confirm"), count($ids)),
+		);
+
+		$this->views_model->back_office('admin/delete', array_merge($this->global, $data));
+	}
+	
+	function index($message = NULL)
+	{
+		if ($this->input->post('delete'))
+			return $this->delete($this->input->post('ids'));
+
+		$this->users_model->order_by($this->session->userdata($this->session_order_by));
+		$users = $this->users_model->get_all();
+
+		$data = array
+		(
+			'caption' => $this->lang->line('users'),
+			'action' => site_url($this->url),
+			'users' => $users,
+			'message' => $message,
+			'anchors' => array($this->views_model->anchor_view($this->url . "view/"), $this->views_model->anchor_edit($this->url . "edit/")),
+			'buttons' => array($this->views_model->button_add($this->url . "add/"), $this->views_model->button_delete_all("delete")),
+		);
+
+		$this->views_model->back_office($this->url . 'list', array_merge($this->global, $data));
+	}
+	
+	
+	function order_by($name)
+	{
+		$order_by = $this->session->userdata($this->session_order_by);
+
+		if (is_array($order_by) && array_key_exists($name, $order_by))
+			$data = array($name => ($order_by[$name] == "asc") ? "desc" : "asc");
+		else
+			$data = array($name => "asc");
+
+		$this->session->set_userdata($this->session_order_by, $data);
+
+		$this->index(); 			
+	}
+	
+	function _form_validation_set_rules()
+	{
+		$this->form_validation->set_rules('data[username]', $this->lang->line("users-username"), 'trim|required');
+		$this->form_validation->set_rules('data[name]', $this->lang->line("users-name"), 'trim|required');
+		$this->form_validation->set_rules('data[email]', $this->lang->line("users-email"), 'trim|required|valid_email');
+		
+		return;
+	}
+	
+	public function content_check($content)
+	{
+		if (strip_tags(unescape($content)) == NULL)
+		{
+			$this->form_validation->set_message("content_check", $this->lang->line("required"));
+			return false;
+		}
+		
+		return true;
+	}
+
+	function add()
+	{
+		$this->_form_validation_set_rules();
+
+		// Save data
+		if ($this->input->post('save') && $this->form_validation->run('form'))
+		{
+			$data = $this->input->post('data');
+			$data['password'] = rand(1000, 9999);
+			echo "password = " . $data['password'] . "<br />";
+			$data['password'] = encrypt($data['password']);
+			$data['rights'] = $this->users_model->rights_pack($data['rights']);
+			$result = $this->users_model->insert($data);
+
+							
+			return $this->index(($result) ? $this->lang->line("message-add-success") : $this->lang->line("message-add-error"));
+		}
+		
+		$this->events_model->order_by(array('date_from' => "asc"));
+		$events = $this->events_model->get_all();
+		
+		// Generate users data
+		$users_data = array
+		(
+			'caption' => $this->lang->line("users-add"),
+			'action' => site_url($this->url . "add/"),
+			'buttons' => array($this->views_model->button_save("save"), $this->views_model->button_cancel($this->url)),
+			'data' => $this->input->post('save') ? $this->input->post('data') : $this->users_model->data(),
+		);
+		
+		$this->views_model->back_office($this->url . 'form', array_merge($this->global, $users_data));
+	}
+	
+	function edit($id = NULL)
+	{		
+		$this->users_model->where(array('id' => $id));
+		$new = $this->users_model->get();
+		
+		if ($new == NULL)
+			return $this->index($this->lang->line("message-not-exists"));
+			
+		$this->_form_validation_set_rules();
+		
+		// Edit data		
+		if ($this->input->post('save') && $this->form_validation->run('form'))
+		{
+			$result = $this->users_model->update($id, array_merge($new, $this->input->post('data')));
+				
+			return $this->index(($result) ? $this->lang->line("message-edit-success") : $this->lang->line("message-edit-error"));
+		}
+		
+		$new['rights'] = $this->users_model->rights_unpack($new['rights']);
+		
+		// Generate users data		
+		$users_data = array
+		(
+			'caption' => $this->lang->line("users-edit"),
+			'action' => site_url($this->url . "edit/" . $id),
+			'buttons' => array($this->views_model->button_save("save"), $this->views_model->button_reset(), $this->views_model->button_back($this->url)),
+			'data' => ($this->input->post('save')) ? $this->input->post('data') : $new,
+		);
+		
+		$this->views_model->back_office($this->url . 'form', array_merge($this->global, $users_data));	
+	}
+	
+	function view($id = NULL)
+	{
+		$this->users_model->where(array('id' => $id));
+		$new = $this->users_model->get();
+		
+		if ($new == NULL)
+			return $this->index($this->lang->line("message-not-exists"));
+		
+		$users_data = array
+		(
+			'caption' => $this->lang->line("users-view"),
+			'action' => site_url($this->url),
+			'buttons' => array($this->views_model->button_edit($this->url . "edit/" . $id), $this->views_model->button_delete("delete"), $this->views_model->button_back($this->url)),
+			'data' => $new,
+		);
+		
+		$this->views_model->back_office($this->url . 'view', array_merge($this->global, $users_data));	
+	}
+}
+
+/* End of file users.php */
+/* Location: ./system/application/controllers/admin/users.php */
+?>

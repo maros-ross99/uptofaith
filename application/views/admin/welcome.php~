@@ -1,0 +1,5 @@
+<div class="msg-info">
+	<?php printf(lang('welcome-text'), $admin['name']); ?>
+	<br />
+	<?php printf(lang('welcome-last-login'), format_datetime($datetime_format, $admin['last_login'])); ?>
+</div>

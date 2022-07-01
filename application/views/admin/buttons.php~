@@ -1,0 +1,8 @@
+	<div id="box_buttons">
+		<!--<?php echo form_open_multipart($action); ?>-->
+		<form id="myform" action="<?php echo $action; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+		<?php
+		foreach ($buttons as $button)
+			echo "&nbsp;" . $button;
+		?>
+	</div>

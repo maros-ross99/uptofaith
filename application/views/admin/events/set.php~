@@ -1,0 +1,1 @@
+<?php printf(lang('events-set-text'], $data['name']); ?>

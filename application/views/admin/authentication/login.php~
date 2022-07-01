@@ -1,0 +1,33 @@
+	<div class="msg-info">
+	PROSÍM ČTĚTE:<br />
+	Tohle je zatím jen TESTOVACÍ verze systému. Systém jsem testoval několikrát, no chyby se sem-tam objevují, proto prosím:
+	<ul>
+		<li>v případe jakýchkoli otázek ohledně fungování systému/jak se co dělá mně prosím kontaktujte</li>
+		<li>přidávejte/měnte/mažte všechno co budete chtít, vyzkoušejte VŠECHNY možnosti systému</li>
+		<li>jesli narazíte na gramatickou chybu, nebo překlep, zapište si to</li>
+		<li>v případe výskytu chyby si ji prosim zapište (nebo udělejte print screen) a taky si prosim zapište kroky, které k této chybe vedli !!</li>
+		<li>jesli se vám nebude neco líbít, chtěli by jste něco změnit, zapište si to a oznamte mi to</li>
+	</ul>	
+	Výstup ze všech zmíněných mi prosím pošlete co nejdřív na email: maros.vano@gmail.com<br />
+	DŮLEŽITÉ: po pár dnech, když se bude zdát, že systém je v pořádku budu všechna data vymazána a pojede se naostro !
+	</div>
+	<?php echo $message; ?>
+	<?php echo validation_errors(); ?>
+	<table id="form">
+		<tbody>
+			<tr>
+			<th><?php echo lang('authentication-username'); ?></th>
+			<td><input type="text" name="data[username]" value=""></td>
+			</tr>
+			<tr>
+			<th><?php echo lang('authentication-password'); ?></th>
+			<td><input type="password" name="data[password]" value=""></td>
+			</tr>
+			<?php if ($captcha != NULL) : ?>
+				<tr>
+				<th><?php echo lang('authentication-captcha') . "<br />" . $captcha['image']; ?></th>
+				<td><input type="text" name="data[captcha]" value=""></td>
+				</tr>
+			<?php endif; ?>
+		</tbody>
+	</table>	

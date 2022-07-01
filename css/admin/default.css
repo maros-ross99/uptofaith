@@ -1,0 +1,754 @@
+@charset "UTF-8";
+
+* 
+{
+	margin: 0;
+	padding: 0;
+}
+
+body
+{
+   padding: 16px 80px;
+   background: #ffffff;
+   color: #000;
+   min-width: 1150px;
+}
+
+body, div, span, table, td, th, input, textarea, select, optgroup, ul, li
+{
+	font: normal 13px/normal Tahoma, Verdana, Arial, Helvetica, sans-serif;	
+}
+
+#menu
+{
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#logo
+{
+   text-align: center;
+   border-bottom: solid 1px #d9d9d9;
+}
+
+#footer
+{
+   margin-top: 64px;
+   text-align: center;
+   color: #626262;
+}
+
+input, select, textarea, optgroup
+{
+	border: 1px solid #a0a0a0;
+	padding: 2px;
+	color: #000;
+}
+
+input[type=text], input[type=password], textarea
+{
+	width: 60%;
+}
+
+.button
+{
+	color: #000;
+	font-weight: normal;
+	text-decoration: none;
+	-moz-border-radius: 8px;
+    	-webkit-border-radius: 8px;
+    	-khtml-border-radius: 8px;
+    	border-radius: 8px;
+	border: 0px;
+	padding: 5px 5px 5px 24px;
+	background: #f5f5f5;
+	background-size: 16px 16px;
+	background-repeat: no-repeat;
+	background-position: 4px center;
+}
+
+.button:hover
+{
+	text-decoration: none;
+/*	cursor: pointer;*/
+}
+
+.button-login
+{
+	background-image: url("../../images/admin/accept.png");
+}
+
+.button-main-page
+{
+	background-image: url("../../images/admin/page_white_text.png");
+}
+
+.button-add
+{
+	background-image: url("../../images/admin/add.png");
+}
+
+.button-copy
+{
+	background-image: url("../../images/admin/folder_go.png");
+}
+
+.button-reset
+{
+	background-image: url("../../images/admin/folder_go.png");
+}
+
+.button-delete
+{
+	background-image: url("../../images/admin/bin_closed.png");
+}
+
+.button-save
+{
+	background-image: url("../../images/admin/disk.png");
+}
+
+.button-edit
+{
+	background-image: url("../../images/admin/pencil.png");
+}
+
+.button-back
+{
+	background-image: url("../../images/admin/arrow_turn_left.png");
+}
+
+.button-cancel
+{
+	background-image: url("../../images/admin/cross.png");
+}
+
+h1,h2,h3
+{
+	
+ font-family: Arial, Helvetica, sans-serif;
+ line-height: normal;
+}
+
+h1
+{
+ border-bottom: solid 1px #d9d9d9;
+ font-weight: normal;
+ font-size: 180%;
+ text-indent: 5px;
+ letter-spacing: -1px;
+}
+
+h2
+{
+	margin: 0;
+
+ font-weight: normal;
+ font-size: 140%;
+ text-indent: 5px;
+ letter-spacing: -1px; 
+ color: #ffffff;
+}
+
+cite { float: right; }
+ul.classic { list-style: disc; margin-bottom: 1em; padding-left: 2em; }
+div.section { clear: both; padding-top: 50px; }
+
+/**
+ * Horizontal CSS Drop-Down Menu Module
+ *
+ * @file		dropdown.css
+ * @package		Dropdown
+ * @version		0.7.1
+ * @type		Transitional
+ * @stacks		597-599
+ * @browsers	Windows: IE6+, Opera7+, Firefox1+
+ *				Mac OS: Safari2+, Firefox2+
+ *
+ * @link		http://www.lwis.net/
+ * @copyright	2006-2008 Live Web Institute. All Rights Reserved.
+ *
+ */
+
+ul.dropdown,
+ul.dropdown li,
+ul.dropdown ul {
+ list-style: none;
+ margin: 0;
+ padding: 0;
+}
+
+ul.dropdown {
+ position: relative;
+ z-index: 597;
+ float: left;
+}
+
+ul.dropdown li {
+ float: left;
+ line-height: 1.3em;
+ vertical-align: middle;
+ zoom: 1;
+}
+
+ul.dropdown li.hover,
+ul.dropdown li:hover {
+ position: relative;
+ z-index: 599;
+ cursor: default;
+}
+
+ul.dropdown ul {
+ visibility: hidden;
+ position: absolute;
+ top: 100%;
+ left: 0;
+ z-index: 598;
+ width: 100%;
+}
+
+ul.dropdown ul li {
+ float: none;
+}
+
+ul.dropdown ul ul {
+ top: 1px;
+ left: 99%;
+}
+
+ul.dropdown li:hover > ul {
+ visibility: visible;
+}
+
+/** 
+ * Vimeo.com CSS Drop-Down Menu Theme
+ *
+ * @file		default.css
+ * @name		Vimeo
+ * @version		beta
+ * @type		transitional
+ * @browsers	Windows: IE5+, Opera9+, Firefox1+
+ *				Mac OS: Safari2+, Firefox2+
+ *
+ * @link		http://www.lwis.net/
+ * @copyright	2009 Live Web Institute. All Rights Reserved.
+ *
+ */
+
+
+/*-------------------------------------------------/
+ * @section		Base Drop-Down Styling
+ */
+
+
+ul.dropdown {
+ background: transparent url('../../images/admin/box1-bottom-left.png') 0 100% no-repeat;
+ font: normal 14px/normal Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+
+	ul.dropdown li {
+	 padding: 5px 10px;
+	 background-color: #172322;
+	 color: #fff;
+	 line-height: 26px;
+	 white-space: nowrap;
+	}
+
+	ul.dropdown li.first {
+	 padding-left: 15px;
+	 background: transparent url('../../images/admin/box1-bottom2.png') 0 100% no-repeat;
+	}
+
+	ul.dropdown li.last {
+	 padding-right: 15px;
+	 background: transparent url('../../images/admin/box1-bottom2.png') 100% 100% no-repeat;
+	}
+
+	ul.dropdown li.hover,
+	ul.dropdown li:hover {
+/*	 color: #b0d730; */
+	 color: #e45c51;
+	}
+
+	ul.dropdown a:link,
+	ul.dropdown a:visited	{ color: #fff; text-decoration: none; }
+	ul.dropdown a:hover		{ /* color: #b0d730; */ color: #e45c51; }
+	ul.dropdown a:active	{ color: #e45c51; }
+
+
+	/* -- level mark -- */
+
+	ul.dropdown ul {
+	 left: -21px;
+	 width: 150px;
+	 padding: 0 16px;
+	 background: url('../../images/admin/box1-top.png') 50% 0 no-repeat;
+	}
+
+	ul.dropdown li.last ul {
+	 left: auto;
+	 right: 16px;
+	}
+
+		ul.dropdown ul li {
+		 height: auto;
+		 padding: 5px 15px;
+		 line-height: 1.3em;
+		 white-space: normal;
+		}
+
+		ul.dropdown ul li.first {
+		 padding-left: 0;
+		 background: #172322;
+		}
+
+		ul.dropdown ul li.last {
+		 padding-bottom: 10px;
+		 background: transparent url('../../images/admin/box1-bottom.png') 50% 100% no-repeat;
+		}
+
+		ul.dropdown ul li.first ul {
+		 top: 0;
+		 padding: 0 16px 0 0;
+		 background-image: url('../../images/admin/box1-outwards-top-right.png');
+		}
+
+		ul.dropdown ul li.first li.first {
+		 background-image: none;
+		}
+
+		ul.dropdown ul li.last {
+		 padding-right: 0;
+		}
+
+		ul.dropdown ul li.last ul {
+		 left: 100%;
+		 right: auto;
+		 top: -16px;
+		}
+
+		/* -- level mark -- */
+
+		ul.dropdown ul ul {
+		 top: -12px;
+		 left: 100%;
+		 padding: 16px 0 0;
+		 background: transparent url('../../images/admin/box1-top-left.png') 0 0 no-repeat;
+		}
+
+			ul.dropdown ul ul li.first {
+			 padding-top: 10px;
+			 background: #172322 url('../../images/admin/box1-top-right.png') 100% 0 no-repeat;
+			}
+
+
+/*-------------------------------------------------/
+ * @section		Search Form
+ */
+
+ul.dropdown form * {
+ display: inline;
+ float: left;
+}
+
+ul.dropdown form label {
+ display: none;
+}
+
+ul.dropdown form input.text {
+ width: 143px;
+/* height: 18px;*/
+ padding: 2px 25px 2px 5px;
+ border-width: 0;
+ background: transparent url('../../images/admin/bg_search-field.png') 0 0 no-repeat;
+ color: #969696;
+ font: normal 14px/17px Tahoma, Verdana, Arial, Helvetica, sans-serif;
+ vertical-align: middle;
+}
+
+ul.dropdown form input.text:focus {
+ outline: none;
+}
+
+ul.dropdown form input.button {
+ position: relative;
+ margin: 4px 0 0 -20px;
+}
+
+
+/*-------------------------------------------------/
+ * @section		Support Class `dir`
+ */
+
+
+ul.dropdown *.dir {
+ padding-right: 20px;
+ background-image: url('../../images/admin/nav-arrow-down.png');
+ background-position: 100% 50%;
+ background-repeat: no-repeat;
+}
+
+
+/* -- Components override -- */
+
+ul.dropdown-horizontal ul *.dir {
+ padding-right: 15px;
+ background-image: url('../../images/admin/nav-arrow-right.png');
+ background-position: 95% 50%;
+ background-repeat: no-repeat;
+}
+
+
+/** 
+ * Default Advanced CSS Drop-Down Menu Theme
+ *
+ * @file		default.advanced.css
+ * @name		Default
+ * @version		beta
+ * @type		transitional
+ * @browsers	Windows: IE5+, Opera9+, Firefox1+
+ *				Mac OS: Safari2+, Firefox2+
+ *
+ * @link		http://www.lwis.net/
+ * @copyright	2008 Live Web Institute. All Rights Reserved.
+ *
+ */
+
+
+/*-------------------------------------------------/
+ * @section		Base Style Extension
+ */
+
+ul.dropdown li a, ul.dropdown li img, ul.dropdown li p, ul.dropdown li span, ul.dropdown li div {
+ display: block;
+ padding: 5px 10px;
+}
+
+
+/*-------------------------------------------------/
+ * @section		Base Style Override
+ */
+
+ul.dropdown li, ul.dropdown ul li {
+ padding: 0;
+
+}
+
+
+
+
+
+/*-------------------------------------------------/
+ * @section		Base Style Reinitiate: post-override activities
+ */
+
+ul.dropdown li.dir {
+ padding: 5px 20px 5px 10px;
+}
+
+ul.dropdown ul li.dir {
+ padding: 5px 15px;
+}
+
+
+/*-------------------------------------------------/
+ * @section		Custom
+ */
+
+ul.dropdown ul a {
+ padding-left: 15px;
+}
+
+
+ul.dropdown li.hover *.open {
+/*  color: #b0d730;*/
+color: #0000ff;
+}
+
+/* CSS2 clone */
+
+ul.dropdown li:hover > *.dir {
+/* color: #b0d730; */
+color: #0000ff;
+}
+
+ul.dropdown li a
+{
+	font-weight: normal;
+}
+
+#box_caption
+{
+	float: left;
+	width: 50%;
+	background-color: transparent;	
+}
+
+#box_buttons
+{
+	float: right;
+	width: 50%;
+	text-align: right;	
+	background-color: transparent;
+}
+
+#box
+{
+	/*max-width: 1024px;*/
+	margin-top: 24px;
+ 	display: table;
+	margin-left: auto;
+ 	margin-right: auto;
+	background: #172322 url('../../images/admin/box1-top-left2.png') no-repeat top left;
+}
+
+#box_border
+{
+ 	padding: 8px;
+	background: transparent url('../../images/admin/box1-top-right.png') no-repeat top right;
+}
+
+#box_content
+{
+	min-width: 1000px;
+	background: #ffffff;
+	padding: 8px;
+	margin-top: 8px;	
+}
+
+
+textarea
+{
+	height: 100px;	
+}
+
+#list
+{
+	width: 100%;
+	border-collapse:collapse;	
+}
+
+#list th a, #list td a, #box_header a, a
+{
+/*	color: #8abee3; */
+/*	color: #b0d730;*/
+	color: #81baf0;
+	font-weight: bold;
+	text-decoration: none;	
+}
+
+#list th a:hover, #list td a:hover, #box_header a:hover
+{
+	font-weight: bold;
+	text-decoration: underline;	
+}
+
+#list th, #list td
+{
+	padding: 6px;
+	border: 1px solid #d9d9d9;
+}
+
+#list thead
+{
+/*	background: #172322; */
+	background-color: #626262;
+	color: #fff;
+	text-align: left;	
+}
+
+#list tbody th, #form tbody th.section_description, #view tbody th.section_description
+{
+	background-color: #ffffff;
+	color: #000;
+	text-align: center;
+	font-weight: bold;
+}	
+
+
+#list tbody, #list tfoot
+{
+	color: #000;
+	background: #ffffff;	
+}
+
+#list tfoot
+{
+	text-align: right;	
+}
+
+
+#form, #view
+{
+	width: 100%;
+	border-collapse: collapse;	
+}
+
+#form th, #view th
+{
+/*	background-color: #172322;*/
+/*	background-color: #4f4f4f;*/
+	background-color: #626262;
+/*	color: #fff; */
+	color: #fff; 
+	border-bottom: 1px solid #d9d9d9;
+	padding: 6px;
+	width: 50%;
+}
+
+#form th .small
+{
+/*	color: #b0d730;*/
+	color: #ffcc52;
+	font-size: 85%;
+	padding-top: 16px; 
+}
+
+#form td, #view td { padding: 6px; }
+#form tbody tr.hover, #form tbody tr:hover, #view tbody tr.hover, #view tbody tr:hover, #list tbody tr.hover, #list tbody tr:hover { background-color: #cfcfcf; }
+
+.scroll
+{
+	border: 1px solid #ccc;
+	width: 350px;
+	height: 100px;
+	background: #fff;
+	overflow-y: scroll;
+}
+
+.msg-error, .msg-success, .msg-info, .msg-warning
+{
+	margin-bottom: 6px;
+	padding: 4px 4px 4px 34px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	-moz-border-radius: 8px;
+    	-webkit-border-radius: 8px;
+    	-khtml-border-radius: 8px;
+    	border-radius: 8px;
+	border: 1px solid;
+}
+
+.msg-error
+{
+	color: #D8000C;
+	background-color: #FFBABA;
+	border-color: #DF7D7D;
+	background-image: url(../../images/error.png);
+}
+
+.msg-success
+{
+	color: #4F8A10;
+	background-color: #DFF2BF;
+	border-color: #82CE76;
+	background-image: url(../../images/success.png);
+}
+
+.msg-info
+{
+	color: #00529B;
+	background-color: #BDE5F8;
+	border-color: #6B99C7;
+	background-image: url(../../images/info.png);
+}
+
+.msg-warning
+{
+	color: #9F6000;
+	background-color: #FEEFB3;
+	border-color: #E4964D;
+	background-image: url(../../images/warning.png);
+}
+
+.chart
+{
+	width: 450px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div.photo
+{
+	display: inline-block;
+	padding: 8px;
+	margin: 8px;
+	border: 1px solid #c2c2c2;
+	text-align: center;
+}
+
+div.photo:hover
+{
+	border: 1px solid #3399e3;
+}
+
+div.photo div.control
+{
+	margin: 8px;
+	margin-bottom: 0px;
+}
+
+div.photo div.control label
+{
+	margin-left: 4px;
+}
+
+#image
+{
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #000;
+    color: #fff;
+}
+
+#image img 
+{
+    visibility: hidden;
+}
+
+img
+{
+	border: 0;	
+}
+
+div#pagination
+{
+	text-align: center;
+	margin: 2px;
+}
+
+div#pagination ul li
+{
+	display: inline;
+	list-style-type: none;
+	margin-left: 4px;
+	margin-right: 4px;
+}
+
+a
+{
+	color: #3399e3;
+}
+
+a:hover
+{
+	text-decoration: underline;
+}
+
+ul
+{
+	margin-left: 15px;
+}
+
+.ckeditor
+{
+}
+
+optgroup
+{
+	background-color: transparent;
+}

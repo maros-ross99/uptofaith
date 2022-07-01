@@ -1,0 +1,34 @@
+<?php
+
+class Shop extends CI_Controller
+{	
+	function shop()
+	{
+		parent::__construct();
+		// ----------------
+		
+		$this->load->model('Global_model', 'global_model');
+	}
+	
+	function index()
+	{
+		$page_data = array
+		(
+			'caption' => $this->options_model->get('site_welcome_caption'),
+			'title' => $this->options_model->get('site_welcome_title'),
+			'contact' => $this->functions_model->unescape($this->contact),
+			'action' => "",
+			'content' => $this->functions_model->unescape($this->options_model->get('eshop_welcome_message')),
+			'meta_keywords' => $this->options_model->get('eshop_meta_keywords'),
+			'meta_description' => $this->options_model->get('eshop_meta_description'),
+		);
+		
+		$this->views_model->front_office("content", $page_data);
+	}
+	
+}
+
+/* End of file shop.php */
+/* Location: ./system/application/controllers/shop.php */
+
+?>

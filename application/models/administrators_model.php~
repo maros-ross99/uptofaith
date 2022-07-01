@@ -1,0 +1,78 @@
+<?php
+
+class Administrators_model extends CI_Model
+{
+	var $fields = array();
+	var $query;
+	var $table = "administrators";
+	
+	function __construct()
+   {
+		// Call the Model constructor
+		parent::__construct();
+		
+		// Prepare field data
+		$fields = $this->db->field_data($this->table);
+
+		foreach ($fields as $field)
+		   $this->fields[$field->name] = $field->type;
+
+		$this->load->model('Common_model', 'common_model');
+	}
+
+	function data($data = array()) 
+	{
+		return array
+		(
+			'name' => (array_key_exists('name', $data)) ? escape($data['name']) : NULL,
+			'username' => (array_key_exists('username', $data)) ? escape($data['username']) : NULL,
+			'password' => (array_key_exists('password', $data)) ? encrypt($data['password']) : NULL,
+			'email' => (array_key_exists('email', $data)) ? escape($data['email']) : NULL,
+			'last_login' => (array_key_exists('last_login', $data)) ? (int)$data['last_login'] : NULL,
+			'last_login2' => (array_key_exists('last_login2', $data)) ? (int)$data['last_login2'] : NULL,
+		);
+	}
+	
+	function insert($data)
+	{
+      return ($this->query = $this->common_model->_insert($this->table, $this->data($data)));
+	}
+	
+	function update($id, $data)
+	{		
+      return ($this->query = $this->common_model->_update($this->table, $id, $this->data($data))); 
+	}
+
+	function delete($id)
+	{
+		return ($this->query = $this->common_model->_delete($this->table, $id));
+	}
+	
+	function delete_where($where)
+	{
+		return ($this->query = $this->common_model->_delete_where($this->table, $where));
+	}
+	
+	function order_by($order_by)
+	{
+		$this->common_model->_order_by($this->fields, $order_by);
+	}
+	
+	function where($where)
+	{
+		$this->common_model->_where($this->fields, $where);
+	}
+	
+	function get()
+	{
+		$this->query = $this->common_model->_get($this->table);
+		return $this->query->row_array();
+	}
+	
+	function get_all()
+	{
+		$this->query = $this->common_model->_get($this->table);
+		return $this->query->result_array();
+	}
+}
+?>
