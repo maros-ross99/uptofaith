@@ -6,4 +6,8 @@ upload/
 .css~
 .js~
 .sql~
+**/.php~
+**/.css~
+**/.js~
+**/.sql~
 .gitignore~
